@@ -8,6 +8,10 @@ html,body{
     height: 100%;
     width: 100%;
 }
+body{
+    font-size: 18px;
+    line-height: 1.5;
+}
 #main{
     position: relative;
     overflow: hidden;
@@ -48,7 +52,7 @@ canvas{
     top: 30%;
     height: 25%;
     width: 100%;
-    font-size: 100px;
+    font-size: 5vw;
     white-space: nowrap;
     font-family: "DM Sans", sans-serif;
 }
@@ -120,7 +124,6 @@ canvas{
 }
 #page1>#right-text>h1{
     line-height: 1.5;
-    font-size: 50px;
 }
 #page1>#left-text{
     position: absolute;
@@ -129,7 +132,6 @@ canvas{
     text-align: end;
 }
 #page1>#left-text>h1{
-    font-size: 50px;
     line-height: 1.5;
 }
 #page1>#left-text>h3{
@@ -146,7 +148,6 @@ canvas{
     font-weight: 400;
 }
 #page2>#text1>h1{
-    font-size: 60px;
     line-height: 1.5;
 }
 #page2>#text2{
@@ -169,7 +170,32 @@ canvas{
     color: #7c7c7c;
     font-weight: 400;
 }
-#page3>#text3>h1{
-    font-size: 70px;
+#page3>#text3>h1, #page2>#text1>h1, #page1>#left-text>h1, #page1>#right-text>h1{
+    font-size: 3.2vw;
+}
 
+@media (max-width: 768px) {
+    #loop {
+        top: 18%;
+    }
+    #page>h3 {
+        top: 30%;
+    }
+    #page1>#right-text, #page2>#text1, #page3>#text3{
+        top: 20%;
+    }
+    #page1>#left-text, #page2>#text2 {
+        top: 38%;
+    }
+}
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    #page3>#text3>h1, #page2>#text1>h1, #page1>#left-text>h1, #page1>#right-text>h1{
+        font-size: 20px;
+    }
+    #page2>#text2 br, h3 br{
+        display: none!important;
+    }
 }

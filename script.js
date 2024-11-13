@@ -386,12 +386,19 @@ function render() {
 }
 
 function scaleImage(img, ctx) {
-  var canvas = ctx.canvas;
-  var hRatio = canvas.width / img.width;
-  var vRatio = canvas.height / img.height;
-  var ratio = Math.max(hRatio, vRatio);
-  var centerShift_x = (canvas.width - img.width * ratio) / 2;
-  var centerShift_y = (canvas.height - img.height * ratio) / 2;
+  const canvas = ctx.canvas;
+  const hRatio = canvas.width / img.width;
+  const vRatio = canvas.height / img.height;
+
+  // Check if the screen is mobile-sized (adjust the threshold as needed)
+  const isMobile = window.innerWidth <= 768;
+  const ratio = Math.max(hRatio, vRatio) * (isMobile ? 0.5 : 1); // Scale down on mobile
+
+  const centerShift_x = (canvas.width - img.width * ratio) / 2;
+  const centerShift_y = isMobile
+    ? canvas.height - img.height * ratio // Align to bottom on mobile
+    : (canvas.height - img.height * ratio) / 2;
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(
     img,
@@ -443,3 +450,22 @@ gsap.to("#page3",{
     scroller:`#main`
   }
 })
+
+function setYearAsId() {
+  const year = new Date().getFullYear();
+  const container = document.getElementById("yearContainer");
+  container.id = year;
+  container.textContent = year;
+}
+
+setYearAsId();
+
+function displaySignature() {
+  const createdByStyle = "background: black; color: white; padding:10px 10px 10px 5px;";
+  const nameStyle = "color: orange; margin-left: -13px;";
+  const siteStyle = "background: white; color: black; padding: 10px 15px;";
+  console.log("%cCreated by %cSALMAN AZIZ%c https://salmanaziz.net", createdByStyle, createdByStyle + nameStyle, siteStyle);
+}
+
+// Call the function
+displaySignature();
