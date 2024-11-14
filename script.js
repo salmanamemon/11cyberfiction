@@ -451,14 +451,17 @@ gsap.to("#page3",{
   }
 })
 
-function setYearAsId() {
+function setYearAndMonthAsId() {
   const year = new Date().getFullYear();
+  const month = new Date().toLocaleString('default', { month: 'long' }); // Get full month name
   const container = document.getElementById("yearContainer");
-  container.id = year;
-  container.textContent = year;
+  
+  // Set the ID to include both year and month name
+  container.id = `${year}-${month}`;
+  container.textContent = `${month} , ${year}`;
 }
 
-setYearAsId();
+setYearAndMonthAsId();
 
 function displaySignature() {
   const createdByStyle = "background: black; color: white; padding:10px 10px 10px 5px;";
